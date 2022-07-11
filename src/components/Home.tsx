@@ -4,19 +4,14 @@ import List from "../components/List";
 import "./App.css";
 
 const Home: React.FC = () => {
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState('');
 
-  const inputHandler = (e: any) => {
-    //convert input text to lower case
-    const lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value.toLowerCase();
+    setInputText(text);
   };
-  return (
 
-    //header
-    //text header
-    //list (done)
-    //loading state => show react logo
+  return (
     <>
       <h1>GitHub Search</h1>
       <div className="search">

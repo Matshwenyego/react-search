@@ -3,8 +3,7 @@ import axios from 'axios';
 const configs = {
   headers: {
     'Content-Type': 'application/json',
-    //move to env file
-    Authorization: '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',
+    Authorization: `${process.env.REACT_APP_AUTHORIZATION_KEY}`,
   },
 };
 
@@ -13,7 +12,7 @@ async function get(url: string) {
     try {
       const responseJson = await response;
       return responseJson.data;
-    } catch (err: any) {
+    } catch (err: any) {      
         return err.response;
     }
   }
