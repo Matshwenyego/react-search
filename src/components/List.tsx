@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { get } from '../services/ApiCallBase';
-import {User} from '../types';
+import { User, Users } from '../types';
 import "./List.css";
 
 interface Props {
@@ -9,11 +9,11 @@ interface Props {
 }
 
 const List: React.FC<Props> =({ input }) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<Users|[]|any>([]);
     const navigate = useNavigate();
 
     const getData = async () => {
-        const data = await get('https://api.github.com/users');
+        const data: Users = await get('https://api.github.com/users');
         setData(data);
         return data;
     }
@@ -26,7 +26,8 @@ const List: React.FC<Props> =({ input }) => {
         navigate('/user', {state: { user: item }});
     }
 
-    const filteredData = data.filter((el: any) => {
+    //fix
+    const filteredData = data.filter((el: User) => {
         // use rx_js search
 
         //if no input the return the original
