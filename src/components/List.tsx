@@ -10,12 +10,13 @@ interface Props {
 
 const List: React.FC<Props> =({ input }) => {
     const [data, setData] = useState<Users|[]|any>([]);
+
     const navigate = useNavigate();
 
     const getData = async () => {
-        const data: Users = await get('https://api.github.com/users');
-        setData(data);
-        return data;
+        const response: Users = await get('https://api.github.com/users');
+        setData(response);
+        return response;
     }
 
     useEffect(()=>{
@@ -25,8 +26,7 @@ const List: React.FC<Props> =({ input }) => {
     const viewUserDetails = (item: User) => {
         navigate('/user', {state: { user: item }});
     }
-    
-    // replace search use rx_js search
+
     const filteredData = data.filter((el: User) => {
         if (input === '') {
             return el;
@@ -35,7 +35,7 @@ const List: React.FC<Props> =({ input }) => {
             return el.login.toLowerCase().includes(input)
         }
     });
-    
+
     return (
         <div className='container'>
             <ul>
