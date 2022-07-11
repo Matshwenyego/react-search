@@ -25,32 +25,28 @@ const List: React.FC<Props> =({ input }) => {
     const viewUserDetails = (item: User) => {
         navigate('/user', {state: { user: item }});
     }
-
-    //fix
+    
+    // replace search use rx_js search
     const filteredData = data.filter((el: User) => {
-        // use rx_js search
-
-        //if no input the return the original
         if (input === '') {
             return el;
         }
-        //return the item which contains the user input
         else {
             return el.login.toLowerCase().includes(input)
         }
     });
     
-
-    // center align name and image
     return (
-        <ul>
-            {filteredData.map((item: User) => (
-                <div key={item.id} onClick={() => viewUserDetails(item)} className="item">
-                    <img src={item.avatar_url} alt={'user_avatar'} className="img" />
-                    <p>{item.login}</p>
-                </div>
-            ))}
-        </ul>
+        <div className='container'>
+            <ul>
+                {filteredData.map((item: User) => (
+                    <div key={item.id} onClick={() => viewUserDetails(item)} className='item'>
+                        <img src={item.avatar_url} alt={'user_avatar'} className='img' />
+                        <p>{`Name: ${item.login}`}</p>
+                    </div>
+                ))}
+            </ul>
+        </div>
     )
 }
 

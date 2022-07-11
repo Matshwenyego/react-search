@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 import List from "../components/List";
-import "./App.css";
+import "./Home.css";
 
 const Home: React.FC = () => {
   const [inputText, setInputText] = useState('');
@@ -12,8 +12,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <>
-      <h1>GitHub Search</h1>
+    <div className="home">
+      <h1>Github Search</h1>
       <div className="search">
       <TextField
           id='outlined-basic'
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         />
       </div>
       <List input={inputText} />
-    </>
+    </div>
   );
 }
 
